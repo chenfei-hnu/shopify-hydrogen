@@ -1,6 +1,6 @@
 {
   "env": {
     "SESSION_SECRET": "foobar",
-    "PUBLIC_STORE_DOMAIN": "mock.shop1"
+    "PUBLIC_STORE_DOMAIN": "mock.shop"
   }
 }
