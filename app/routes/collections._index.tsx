@@ -2,6 +2,7 @@ import {useLoaderData, Link} from '@remix-run/react';
 import {json, type LoaderArgs} from '@shopify/remix-oxygen';
 import {Pagination, getPaginationVariables, Image} from '@shopify/hydrogen';
 import type {CollectionFragment} from 'storefrontapi.generated';
+import { useEffect, useState } from 'react';
 
 export async function loader({context, request}: LoaderArgs) {
   const paginationVariables = getPaginationVariables(request, {
@@ -17,10 +18,29 @@ export async function loader({context, request}: LoaderArgs) {
 
 export default function Collections() {
   const {collections} = useLoaderData<typeof loader>();
+  const [response, setResponse] = useState({})
+  const getResponse = async () => {
+    try {
+      const url = 'https://ai-backend.vanceai.com/article/detail?module=ebiz&language=en&id=professional-soap-photography';
+      const res = await fetch(url);
+      debugger
+      const data = await res.json();
+      setResponse(data); // 更新响应数据
+    } catch (error) {
+      // 处理错误
+    }
+  }
+  
 
+  useEffect(() => {
+    getResponse()
+  },[])
+  
   return (
     <div className="collections">
       <h1>Collections</h1>
+      <div>{ JSON.stringify(response) }</div>
+      <iframe src="https://huaban.com/"  width="100%" height="500"></iframe>
       <Pagination connection={collections}>
         {({nodes, isLoading, PreviousLink, NextLink}) => (
           <div>
