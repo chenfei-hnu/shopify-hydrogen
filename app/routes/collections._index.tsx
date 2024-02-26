@@ -23,7 +23,6 @@ export default function Collections() {
     try {
       const url = 'https://ai-backend.vanceai.com/article/detail?module=ebiz&language=en&id=professional-soap-photography';
       const res = await fetch(url);
-      debugger
       const data = await res.json();
       setResponse(data); // 更新响应数据
     } catch (error) {
